@@ -5,6 +5,7 @@
     <title>Hector9000</title>
     <script src="mqtt.js" type="text/javascript"></script>
     <link href="fontawesome/fontawesome.css" rel="stylesheet" type="text/css"/>
+    <meta name="google" content="notranslate">
 </head>
 <body onload="startup()">
 <!-- Scripts-------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -45,8 +46,11 @@
     var TopicDrinkList = "Hector9000/get_drinks";
     var TopicIngredients = "Hector9000/get_ingredientsForDrink";
     var TopicDose = "Hector9000/doseDrink";
-    var TopicClean = "??";
-    var TopicDry = "??";
+    var TopicClean = "Hector9000/cleanMe";
+    var TopicDry = "Hector9000/dryMe";
+    var TopicOpenAllValves = "Hector9000/openAllValves";
+    var TopicCloseAllValves = "Hector9000/closeAllValves";
+    var TopicCleanAndExit = "Hector9000/cleanAndExit";
 
     var drinkjson = '{ "id": "123", "name": "Getränk","color": "#999999",' +
         '"description": "Ein Getränk",' +
@@ -298,7 +302,7 @@
                     document.getElementById("DM_zubereiten_loading").className = "inv";
                     document.getElementById("DM_zubereiten").className = "DM_button";
                     doseEnded()
-                }, 30000);
+                }, 310000);
             } else {
                 DM_status = DM_State.REQUESTING;
                 publish(TopicDose, id.toString());
@@ -901,15 +905,15 @@
         font-weight: bold;
         display: flex;
         text-align: center;
-        height: 70px;
-        width: 200px;
+        height: 90px;
+        width: 500px;
         border: 1px solid black;
         border-radius: 5px;
     }
 
     .CM_button > div{
         margin: auto;
-        font-size: 3rem;
+        font-size: 2rem;
     }
 
     #CM_buttons {
@@ -1076,7 +1080,7 @@
 <div id="content">
     <div id="header">
         <div id="title">
-            <span id="h9">Hector 9000</span>
+            <span id="h9">LET-HIM-MIX</span>
         </div>
         <!-- OpenConfig Modal -->
         <div id="config-but" onclick="openConfigModal()">
@@ -1152,7 +1156,12 @@
             <div id="CM_content">
                 <h1>Configuration</h1>
                 <div id="CM_buttons">
-			<div class="CM_button" onclick="publish(TopicDry, 'true')"><div>DRY</div></div><div onclick="publish(TopicClean, 'true')" class="CM_button"><div>CLEAN</div></div><div onclick="location.reload()" class="CM_button"><div>RELOAD</div></div>
+			<div class="CM_button" onclick="publish(TopicDry, 'true')"><div>DRY</div></div>
+			<div onclick="publish(TopicClean, 'true')" class="CM_button"><div>CLEAN</div></div>
+			<div onclick="publish(TopicOpenAllValves, 'true')" class="CM_button"><div>V-OPEN</div></div>
+			<div onclick="publish(TopicCloseAllValves, 'true')" class="CM_button"><div>V-CLOSE</div></div>
+			<div onclick="publish(TopicCleanAndExit, 'true')" class="CM_button"><div>SHUTDOWN</div></div>
+			<div onclick="location.reload()" class="CM_button"><div>RELOAD</div></div>
                 </div>
                 <h1 onclick="closeConfigModal()">Close</h1>
             </div>
