@@ -33,8 +33,8 @@ var port = 9001;
 var TopicDrinkList = "Hector9000/get_drinks";
 var TopicIngredients = "Hector9000/get_ingredientsForDrink";
 var TopicDose = "Hector9000/doseDrink";
-var TopicClean = "??";
-var TopicDry = "??";
+var TopicClean = "Hector9000/cleanMe";
+var TopicDry = "Hector900/dryMe";
 
 var drinkjson = '{ "id": "123", "name": "Getränk","color": "#999999",' +
     '"description": "Ein Getränk",' +
